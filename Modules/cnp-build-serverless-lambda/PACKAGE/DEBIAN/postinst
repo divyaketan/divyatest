@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# update-ca-certificates
+cp /usr/local/etc/serverless/pip.conf /etc/pip.conf
+pip3 install --progress-bar off --upgrade pip
+pip3 install --progress-bar off --no-cache-dir -r /usr/local/etc/serverless/requirements.txt
+rm /usr/local/lib/python3.9/dist-packages/botocore/cacert.pem
+rm /usr/lib/python3/dist-packages/botocore/cacert.pem
+ln -s /etc/ssl/certs/ca-certificates.crt /usr/local/lib/python3.9/dist-packages/botocore/cacert.pem
+ln -s /etc/ssl/certs/ca-certificates.crt /usr/lib/python3/dist-packages/botocore/cacert.pem
+rm /usr/local/lib/python3.9/dist-packages/certifi/cacert.pem
+rm /usr/lib/python3/dist-packages/certifi/cacert.pem
+ln -s /etc/ssl/certs/ca-certificates.crt /usr/local/lib/python3.9/dist-packages/certifi/cacert.pem
+ln -s /etc/ssl/certs/ca-certificates.crt /usr/lib/python3/dist-packages/certifi/cacert.pem
+mkdir -p /tmp/uploader/pip/venv
+
+# install saml2aws
+# export SAML_2_AWS_VERSION="2.30.0"
+# curl -vL https://github.com/Versent/saml2aws/releases/download/v${SAML_2_AWS_VERSION}/saml2aws_${SAML_2_AWS_VERSION}_linux_amd64.tar.gz --output saml2aws.tar.gz
+# tar -xvf saml2aws.tar.gz --one-top-level="/usr/local/bin"
+# chmod u+x "/usr/local/bin/saml2aws"
+# rm -f saml2aws.tar.gz
+# saml2aws --version

@@ -1,0 +1,7 @@
+Package: cnp-build-serverless-lambda
+Architecture: all
+Maintainer: RxFactor
+Priority: optional
+Version: 0.0.3
+Depends:  python3.9, python3-pip, git, python3.9-venv, cnp-util-core
+Description: Package Lambda zip to be used for upload to S3 and deployment
